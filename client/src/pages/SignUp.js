@@ -1,5 +1,3 @@
-// src/components/SignUp.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,16 +7,20 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
-    const navigate = useNavigate()
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
-      const response = await axios.post('https://urlshortened.onrender.com/api/signup', { email, password,name });
-      console.log(response)
+      const response = await axios.post('https://urlshortened.onrender.com/api/signup', { email, password, name });
       localStorage.setItem('token', response.data.token); 
-      navigate('/shorturl')
+      navigate('/shorturl');
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,9 +53,9 @@ const SignUp = () => {
           <button
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
-            onClick={handleSubmit}
+            disabled={loading}
           >
-            Sign Up
+            {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
         </form>
         {error && <p className="text-red-500 mt-2">{error}</p>}

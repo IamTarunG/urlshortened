@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const UserUrls = () => {
   const [userUrls, setUserUrls] = useState([]);
-
+  const [loading, setLoading] = useState(true); 
   useEffect(() => {
     const fetchUserUrls = async () => {
       try {
@@ -15,6 +15,8 @@ const UserUrls = () => {
         setUserUrls(response.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false); 
       }
     };
 
@@ -38,6 +40,10 @@ const UserUrls = () => {
       .then(() => alert('Short URL copied to clipboard'))
       .catch((error) => console.error('Failed to copy short URL:', error));
   };
+
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
 
   return (
     <div>

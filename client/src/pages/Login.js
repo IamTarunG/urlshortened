@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,15 +6,20 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-    const navigate = useNavigate()
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
       const response = await axios.post('https://urlshortened.onrender.com/api/login', { email, password });
       localStorage.setItem('token', response.data.token);
-      navigate('/shorturl')
+      navigate('/shorturl');
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -42,8 +45,9 @@ const Login = () => {
           <button
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            disabled={loading} 
           >
-            Login
+            {loading ? 'Logging In...' : 'Login'}
           </button>
         </form>
         {error && <p className="text-red-500 mt-2">{error}</p>}
