@@ -9,7 +9,7 @@ const UserUrls = () => {
     const fetchUserUrls = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/dashboard/urls', {
+        const response = await axios.get('https://urlshortened.onrender.com/api/dashboard/urls', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUserUrls(response.data);
@@ -24,7 +24,7 @@ const UserUrls = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/dashboard/urls/${id}`, {
+      await axios.delete(`https://urlshortened.onrender.com/api/dashboard/urls/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUserUrls(userUrls.filter(url => url._id !== id));
@@ -55,10 +55,10 @@ const UserUrls = () => {
             <tr key={url._id}>
               <td className="border border-gray-400 px-4 py-2 break-all">{url.originalUrl}</td>
               <td className="border border-gray-400 px-4 py-2 space-x-16">
-                <a href={`http://localhost:5000/api/url/${url.shortUrl}`} target='_blank' rel="noopener noreferrer">{`http://localhost:5000/api/url/${url.shortUrl}`}</a>
+                <a href={`https://urlshortened.onrender.com/api/url/${url.shortUrl}`} target='_blank' rel="noopener noreferrer">{`https://urlshortened.onrender.com/api/url/${url.shortUrl}`}</a>
                 <button
                   className="mt-2 md:mt-0 md:ml-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
-                  onClick={() => copyToClipboard(`http://localhost:5000/api/url/${url.shortUrl}`)}
+                  onClick={() => copyToClipboard(`https://urlshortened.onrender.com/api/url/${url.shortUrl}`)}
                 >
                   Copy
                 </button>

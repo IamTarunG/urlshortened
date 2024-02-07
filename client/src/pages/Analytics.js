@@ -9,7 +9,7 @@ const Analytics = () => {
     const fetchUrlData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/dashboard/urls', {
+        const response = await axios.get('https://urlshortened.onrender.com/api/dashboard/urls', {
           headers: { Authorization: `Bearer ${token}` }
         });
 

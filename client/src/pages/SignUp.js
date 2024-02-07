@@ -13,7 +13,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', { email, password,name });
+      const response = await axios.post('https://urlshortened.onrender.com/api/signup', { email, password,name });
       console.log(response)
       localStorage.setItem('token', response.data.token); 
       navigate('/shorturl')

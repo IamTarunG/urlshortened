@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
+      const response = await axios.post('https://urlshortened.onrender.com/api/login', { email, password });
       localStorage.setItem('token', response.data.token);
       navigate('/shorturl')
     } catch (error) {

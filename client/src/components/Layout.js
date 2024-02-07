@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Navbar from './Navbar';
-import ShortenUrl from '../pages/ShortenUrl';
+
 
 const Layout = ({ children }) => {
   return (

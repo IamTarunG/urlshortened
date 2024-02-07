@@ -12,7 +12,7 @@ const ShortenUrl = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5000/api/shorten', { originalUrl }, {
+      const response = await axios.post('https://urlshortened.onrender.com/api/shorten', { originalUrl }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setShortUrl(response.data.shortUrl);
@@ -29,7 +29,7 @@ const ShortenUrl = () => {
           <input type="text" placeholder="Enter URL" value={originalUrl} onChange={(e) => setOriginalUrl(e.target.value)} className="w-full p-2 rounded-md border border-gray-300 mb-4" />
           <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Shorten</button>
         </form>
-        {shortUrl && <a className="mt-4" href={`http://localhost:5000/api/url/${shortUrl}`}>Shortened URL: {shortUrl}</a>}
+        {shortUrl && <a className="mt-4" href={`https://urlshortened.onrender.com/api/url/${shortUrl}`}>Shortened URL: {shortUrl}</a>}
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
     </div>

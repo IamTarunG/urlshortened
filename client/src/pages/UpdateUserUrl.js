@@ -12,7 +12,7 @@ const UpdateUserUrl = () => {
     const fetchUrl = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/dashboard/urls/${id}`, {
+        const response = await axios.get(`https://urlshortened.onrender.com/api/dashboard/urls/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setOriginalUrl(response.data.originalUrl);
@@ -28,7 +28,7 @@ const UpdateUserUrl = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/dashboard/urls/${id}`, { updatedUrl }, {
+      await axios.put(`https://urlshortened.onrender.com/api/dashboard/urls/${id}`, { updatedUrl }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOriginalUrl(updatedUrl);
