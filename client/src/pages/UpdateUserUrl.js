@@ -39,7 +39,7 @@ const UpdateUserUrl = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-4 bg-white shadow-md rounded-md">
+    <div className="px-4">
       <h1 className="text-2xl font-bold mb-4">Edit URL</h1>
       <p className="mb-4"><strong>Original URL:</strong> {originalUrl}</p>
       <form onSubmit={handleSubmit} className="mb-4">
